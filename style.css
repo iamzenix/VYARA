@@ -1,0 +1,369 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    background-color: #F6EAF0; /* Light pastel pink */
+    color: #6A4C93; /* Dark lavender/purple */
+    overflow-x: hidden;
+    opacity: 0; /* Starting state for loading */
+    transition: opacity 1s ease-in-out; /* Page loading transition */
+}
+
+body.loaded {
+    opacity: 1; /* Final state after loading */
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F6EAF0; /* Light pastel pink */
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Hidden initially */
+    transform: translateY(-50px); /* Slides down from top */
+    transition: opacity 1.5s ease-in-out 0.5s, transform 1.5s ease-in-out 0.5s; /* Delayed fade-in */
+}
+
+.loaded .navbar {
+    opacity: 1; /* Final state */
+    transform: translateY(0);
+}
+
+/* Logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    opacity: 0; /* Hidden initially */
+    transform: scale(0.8); /* Starts scaled down */
+    transition: opacity 1.5s ease-in-out 0.8s, transform 1.5s ease-in-out 0.8s; /* Smooth transition */
+}
+
+.loaded .logo-img {
+    opacity: 1; /* Final state */
+    transform: scale(1); /* Normal size */
+}
+
+.project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: lowercase;
+    color: #6A4C93; /* Dark lavender */
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #6A4C93; /* Lavender */
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    transition: color 0.3s, background-color 0.3s, padding 0.3s, box-shadow 0.3s;
+}
+
+/* Underline effect for Desktop Links */
+.nav-links a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #6A4C93; /* Lavender */
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none; /* Hide the menu toggle button by default */
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #6A4C93; /* Lavender */
+    cursor: pointer;
+}
+
+/* Side Menu Styles */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Hidden initially */
+    width: 60%; /* Covers 60% of the screen */
+    height: 100%;
+    background-color: #F6EAF0; /* Light pastel pink */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: left 0.8s ease-in-out; /* Smooth slide-in */
+    z-index: 1000;
+}
+
+.side-menu.open {
+    left: 0; /* Slide-in to show */
+}
+
+.side-menu .close-menu {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #6A4C93; /* Lavender */
+    cursor: pointer;
+    margin: 15px;
+}
+
+.side-nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.side-nav-links li {
+    margin: 15px 0;
+}
+
+/* Button style for Mobile Side Nav Links */
+.side-nav-links a {
+    display: block;
+    padding: 10px 20px;
+    background-color: transparent;
+    border-radius: 8px;
+    color: #6A4C93; /* Lavender */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.side-nav-links a:hover {
+    background-color: #6A4C93; /* Lavender */
+    color: #F6EAF0; /* Pastel pink text */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.side-nav-links a:active {
+    background-color: #4B2A68; /* Darker purple */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-color: #F6EAF0; /* Light pastel pink */
+    text-align: center;
+    opacity: 0; /* Hidden initially */
+    transform: translateY(50px); /* Starts sliding up */
+    transition: opacity 1.8s ease 0.7s, transform 1.8s ease 0.7s; /* Smooth delayed fade-in */
+}
+
+.loaded .hero {
+    opacity: 1; /* Final state */
+    transform: translateY(0);
+}
+
+.hero-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    opacity: 0; /* Hidden initially */
+    transform: scale(0.8); /* Starts scaled down */
+    transition: opacity 1.5s ease-in-out 1s, transform 1.5s ease-in-out 1s; /* Smooth transition */
+}
+
+.loaded .hero-logo {
+    opacity: 1; /* Final state */
+    transform: scale(1); /* Normal size */
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: #4B2A68; /* Darker purple */
+}
+
+.hero p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    color: #6A4C93; /* Lavender */
+    margin-top: 10px;
+    opacity: 0; /* Hidden initially */
+    transform: translateY(30px); /* Starts sliding up */
+    transition: opacity 1.5s ease-in-out 1.2s, transform 1.5s ease-in-out 1.2s; /* Delayed entry */
+}
+
+.loaded .hero p {
+    opacity: 1; /* Final state */
+    transform: translateY(0);
+}
+
+/* Footer */
+.footer {
+    background-color: #4B2A68; /* Darker purple */
+    padding: 20px;
+    text-align: center;
+    color: #F6EAF0; /* Light pastel pink */
+    opacity: 0; /* Hidden initially */
+    transform: translateY(50px); /* Starts sliding up */
+    transition: opacity 1.5s ease-in-out 1.5s, transform 1.5s ease-in-out 1.5s; /* Delayed entry */
+}
+
+.loaded .footer {
+    opacity: 1; /* Final state */
+    transform: translateY(0);
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center; /* Center the icons */
+    align-items: center; /* Center vertically */
+    margin: 10px 0; /* Add some margin */
+}
+
+.social-icon {
+    width: 35px; /* Set a smaller size for the icon */
+    height: 35px; /* Set a fixed height to maintain aspect ratio */
+    margin: 0 10px; /* Space between icons */
+    transition: transform 0.3s; /* Animation effect on hover */
+}
+
+.social-icon:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+}
+
+/* Slideshow */
+.slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #F5D3E3; /* Match logo background */
+}
+
+.slideshow-container {
+    display: flex;
+    transition: transform 1s ease; /* Smooth slide transition */
+}
+
+.slideshow-slide {
+    flex: 1 0 100%;
+    height: 400px; /* Adjustable height */
+    background-color: #D2A9CC; /* Pastel purple inspired by logo elements */
+    color: #4C3B57; /* Dark purple text for contrast */
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 24px;
+    opacity: 0; /* Hidden initially */
+    position: absolute; /* Overlapping positioning for slides */
+    top: 0;
+    left: 0;
+    display: flex; /* Center slide content */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 1s ease; /* Smooth fade-in/out */
+}
+
+.slideshow-slide.active {
+    opacity: 1; /* Fully visible */
+    position: relative; /* Normal stacking for active slide */
+    z-index: 1; /* Ensure active slide is on top */
+}
+
+/* Arrows */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px; /* Arrow size */
+    color: #4C3B57; /* Dark purple arrow */
+    z-index: 10; /* Ensure arrows are above slides */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.arrow:hover {
+    background-color: rgba(242, 209, 224, 0.8); /* Light pink on hover */
+    transform: scale(1.1); /* Slightly enlarge */
+}
+
+.left-arrow {
+    left: 15px; /* Position left arrow */
+}
+
+.right-arrow {
+    right: 15px; /* Position right arrow */
+}
+
+/* Indicators */
+.slideshow-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(76, 59, 87, 0.5); /* Dark purple semi-transparent */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.indicator.active {
+    background-color: #4C3B57; /* Fully opaque dark purple */
+    transform: scale(1.2); /* Slightly enlarge active indicator */
+}
+
+.indicator:hover {
+    background-color: #D2A9CC; /* Pastel purple on hover */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .slideshow-slide {
+        height: 300px; /* Reduce height for smaller screens */
+        font-size: 18px; /* Adjust text size */
+    }
+
+    .arrow {
+        font-size: 20px; /* Smaller arrows */
+        padding: 8px; /* Adjust padding */
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
