@@ -9,17 +9,17 @@ const rightArrow = document.querySelector('.right-arrow');
 let currentIndex = 0;
 
 // Page load event to add the loaded class
-window.onload = function() {
+window.addEventListener('load', () => {
     document.body.classList.add('loaded');
-    showSlide(currentIndex); // Show the first slide on load
-};
+    showSlide(currentIndex);
+});
 
-// Function to open the side menu
+// Toggle side menu
 menuToggle.addEventListener('click', () => {
     sideMenu.classList.toggle('open');
 });
 
-// Function to close the side menu
+// Close side menu
 closeMenuButton.addEventListener('click', () => {
     sideMenu.classList.remove('open');
 });
@@ -34,36 +34,30 @@ document.addEventListener('click', (event) => {
 // Slideshow functionality
 function showSlide(index) {
     slides.forEach((slide, i) => {
-        slide.classList.remove('active'); // Remove active class from all slides
-        slide.style.opacity = '0'; // Hide other slides
+        slide.classList.toggle('active', i === index);
+        slide.style.opacity = i === index ? '1' : '0';
     });
-    
-    slides[index].classList.add('active'); // Add active class to the current slide
-    slides[index].style.opacity = '1'; // Show current slide
 }
 
-// Function to change to the next slide
+// Change to the next slide
 function nextSlide() {
-    currentIndex = (currentIndex + 1) % slides.length; // Increment index and loop back
+    currentIndex = (currentIndex + 1) % slides.length;
     showSlide(currentIndex);
 }
 
-// Function to change to the previous slide
+// Change to the previous slide
 function previousSlide() {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Decrement index and loop back
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
     showSlide(currentIndex);
 }
 
 // Start the slideshow
-setInterval(nextSlide, 5000); // Change slide every 5 seconds
+const slideInterval = setInterval(nextSlide, 5000);
 
 // Add event listeners for arrows
-leftArrow.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default action
-    previousSlide();
-});
-
-rightArrow.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default action
-    nextSlide();
+[leftArrow, rightArrow].forEach((arrow, index) => {
+    arrow.addEventListener('click', (event) => {
+        event.preventDefault();
+        index === 0 ? previousSlide() : nextSlide();
+    });
 });
